@@ -1,0 +1,43 @@
+$lightgray: rgb(138, 138, 138);
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: "Roboto";
+}
+.mobile-container {
+    height: 85vh;
+    width: 28vw;
+    max-width: 500px;
+    min-width: 350px;
+    background-color: #0c0b2f;
+    border-radius: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .title {
+        margin: 30px 20px;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    .greet {
+        color: $lightgray;
+        font-size: 0.5em;
+        font-weight: lighter;
+        margin-top: 5px;
+        letter-spacing: 0.5px;
+    }
+    .icons > * {
+        margin: 0px 5px;
+        color: $lightgray;
+    }
+    .icons {
+        margin-right: 10px;
+    }
+}
