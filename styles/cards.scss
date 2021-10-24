@@ -1,0 +1,95 @@
+@import "variables";
+
+.gradient {
+    position: relative;
+    background-image: linear-gradient(
+        to right,
+        hsl(211, 68%, 27%),
+        hsl(179, 83%, 21%)
+    );
+    z-index: 1;
+}
+
+.gradient::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(
+        135deg,
+        rgb(72, 35, 97) 0%,
+        rgb(133, 17, 17) 50%,
+        rgb(116, 80, 31) 100%
+    );
+    z-index: -1;
+    transition: opacity 1.5s linear;
+    border-radius: 20px;
+    opacity: 0;
+}
+.gradient:hover::before {
+    opacity: 1;
+}
+
+.main-price-card {
+    border-radius: 20px;
+    header {
+        margin: 0px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .title {
+            margin: 20px 0px 10px;
+        }
+    }
+    .price {
+        font-family: $font-head;
+        font-size: 2em;
+        margin-left: 20px;
+    }
+    p {
+        margin: 20px;
+        padding-bottom: 20px;
+    }
+}
+.ticker {
+    margin-left: 20px;
+    font-size: 0.8em;
+}
+.price-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: $lightbackground;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 10px;
+    .details {
+        display: flex;
+        img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+    }
+    .price-container {
+        display: flex;
+        align-items: center;
+        svg {
+            color: $green;
+            font-size: 1.2em;
+        }
+    }
+    .price {
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+    }
+    .ticker {
+        margin: 5px 0px 0px;
+    }
+    .symbol {
+        font-size: 0.8em;
+        color: $lightgray;
+    }
+}

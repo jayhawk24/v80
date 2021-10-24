@@ -1,13 +1,15 @@
 import React from "react";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MainPriceCard from "./MainPriceCard";
+import PriceCardsContainer from "./PriceCardsContainer";
 
 function App() {
     return (
-        <div>
+        <div className="content">
             <div className="header">
                 <div className="title">
-                    Hi Suparman
+                    Hello World
                     <div className="greet">Have a great day !</div>
                 </div>
 
@@ -16,6 +18,8 @@ function App() {
                     <NotificationsNoneIcon />
                 </div>
             </div>
+            <MainPriceCard />
+            <PriceCardsContainer />
         </div>
     );
 }

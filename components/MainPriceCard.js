@@ -4,18 +4,16 @@ import Ticker from "./Ticker";
 import { format } from "date-fns";
 
 function MainPriceCard() {
-    const today = format(new Date(), "MMM dd, YYYY");
+    const today = format(new Date(), "MMM dd, yyyy");
     return (
-        <div className="main-price-card">
+        <div className="main-price-card gradient">
             <header>
-                <div className="title">
-                    Amara Raja Batteries
-                    <KeyboardArrowDownRoundedIcon className="arrow-expand" />
-                </div>
+                <div className="title">Amara Raja Batteries</div>
+                <KeyboardArrowDownRoundedIcon className="arrow-expand" />
             </header>
             <div className="price">$503.54</div>
             <Ticker />
-            Today ( {today} )
+            <p>Today ( {today} )</p>
         </div>
     );
 }
