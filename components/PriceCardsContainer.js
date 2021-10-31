@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PriceCard from "./PriceCard";
 
-function PriceCardsContainer() {
+function PriceCardsContainer({ stocks }) {
     return (
         <div>
             <p>Your watchlist</p>
-            <PriceCard
-                imageSrc="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png"
-                title="Bitcoin"
-                code="BTC"
-                alpha="3.4"
-                price="$234"
-            />
-            <PriceCard
-                imageSrc="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png"
-                title="Bitcoin"
-                code="BTC"
-                alpha="3.4"
-                price="$234"
-            />
+            <div className="price-cards-container">
+                {stocks.map((stock, i) => (
+                    <PriceCard
+                        key={i}
+                        imageSrc="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png"
+                        title={stock.name}
+                        symbol={stock.symbol}
+                        alpha={stock.change}
+                        price={stock.price}
+                    />
+                ))}
+            </div>
         </div>
     );
 }

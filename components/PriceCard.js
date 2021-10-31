@@ -2,7 +2,7 @@ import React from "react";
 import Ticker from "./Ticker";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 
-function PriceCard({ imageSrc, title, code, alpha, price }) {
+function PriceCard({ imageSrc, title, symbol, alpha, price }) {
     return (
         <div className="price-card">
             <div className="details">
@@ -10,14 +10,15 @@ function PriceCard({ imageSrc, title, code, alpha, price }) {
                 <div>
                     {title}
                     <div className="symbol">
-                        {code} {alpha}
+                        {symbol}
+                        {/* {alpha} */}
                     </div>
                 </div>
             </div>
             <div className="price-container">
                 <div className="price">
                     {price}
-                    <Ticker display="brief" />
+                    <Ticker display="brief" change={alpha} />
                 </div>
                 <KeyboardArrowRightRoundedIcon />
             </div>

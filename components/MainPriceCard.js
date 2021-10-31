@@ -3,16 +3,21 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import Ticker from "./Ticker";
 import { format } from "date-fns";
 
-function MainPriceCard() {
+function MainPriceCard({ highlightStock }) {
+    if (!highlightStock) return "";
     const today = format(new Date(), "MMM dd, yyyy");
+
     return (
         <div className="main-price-card gradient">
             <header>
-                <div className="title">Amara Raja Batteries</div>
+                <div className="title">{highlightStock.name}</div>
                 <KeyboardArrowDownRoundedIcon className="arrow-expand" />
             </header>
-            <div className="price">$503.54</div>
-            <Ticker />
+            <div className="price"> ₹{highlightStock.price} </div>
+            <Ticker
+                change={highlightStock.change}
+                price={highlightStock.price}
+            />
             <p>Today ( {today} )</p>
         </div>
     );
