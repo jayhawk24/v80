@@ -9,7 +9,7 @@ function App() {
     const [stocks, setStocks] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/v80").then((res) => {
+        axios.get("api/v80").then((res) => {
             setStocks(res.data);
         });
     }, []);

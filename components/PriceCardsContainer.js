@@ -10,6 +10,7 @@ function PriceCardsContainer({ stocks }) {
                     <PriceCard
                         key={i}
                         imageSrc="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png"
+                        // imageSrc={`https://s3-symbol-logo.tradingview.com/${stock.name.toLowerCase()}.svg`}
                         title={stock.name}
                         symbol={stock.symbol}
                         alpha={stock.change}

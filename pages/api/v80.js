@@ -108,26 +108,20 @@ const getData = async (i) => {
             Cookie: process.env.COOKIE
         }
     });
-
     const root = parse(resp.data);
-    const links = root.querySelectorAll("[data-row-company-name] td a");
-    const prices = root.querySelectorAll(
-        "[data-row-company-name] td:nth-child(3)"
-    );
-    const percentChange = root.querySelectorAll(
-        "[data-row-company-name] td:last-child"
-    );
-    const symbol = root.querySelectorAll("[data-row-company-name] td a ");
+    const links = root.querySelectorAll("td a");
+    const prices = root.querySelectorAll("td");
+    const percentChange = prices;
+    const symbol = links;
     const filt = [];
     stocks.map((stock) =>
         links.map((elem, index) => {
-            console.log(elem);
             if (elem.rawAttrs.includes(stock)) {
                 filt.push({
                     symbol: symbol[index].getAttribute("href").split("/")[2],
-                    name: elem.childNodes[0]._rawText.trim(),
-                    price: prices[index].textContent,
-                    change: percentChange[index].textContent
+                    name: elem.parentNode.rawText.trim(),
+                    price: prices[13 * (index + 1) - 11].innerText,
+                    change: percentChange[13 * (index + 1) - 1].innerText
                 });
             }
         })

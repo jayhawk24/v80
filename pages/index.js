@@ -1,6 +1,5 @@
 import Head from "next/head";
 import App from "../components/App";
-import axios from "axios";
 import MobileContainer from "../components/MobileContainer";
 
 export default function Home(props) {
@@ -16,7 +15,7 @@ export default function Home(props) {
                 <link
                     rel="preconnect"
                     href="https://fonts.gstatic.com"
-                    crossorigin
+                    crossOrigin
                 />
                 <link
                     href="https://fonts.googleapis.com/css2?family=Exo&family=Roboto&display=swap"
@@ -35,13 +34,4 @@ export default function Home(props) {
             </div>
         </div>
     );
-}
-
-export async function getStaticProps() {
-    console.log(process.env.BACKEND_API);
-    return {
-        props: {
-            hello: "world"
-        }
-    };
 }
