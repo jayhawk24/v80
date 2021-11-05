@@ -3,6 +3,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MainPriceCard from "./MainPriceCard";
 import PriceCardsContainer from "./PriceCardsContainer";
+import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 
 function App() {
@@ -29,8 +30,16 @@ function App() {
                     <NotificationsNoneIcon />
                 </div>
             </div>
-            <MainPriceCard highlightStock={highlightStock} />
-            <PriceCardsContainer stocks={stocks} />
+            {stocks.length === 0 ? (
+                <div className="loader">
+                    <CircularProgress />
+                </div>
+            ) : (
+                <>
+                    <MainPriceCard highlightStock={highlightStock} />
+                    <PriceCardsContainer stocks={stocks} />
+                </>
+            )}
         </div>
     );
 }
