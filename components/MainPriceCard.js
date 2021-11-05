@@ -2,6 +2,7 @@ import React from "react";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import Ticker from "./Ticker";
 import { format } from "date-fns";
+import Chart from "./Chart";
 
 function MainPriceCard({ highlightStock }) {
     if (!highlightStock) return "";
@@ -13,6 +14,7 @@ function MainPriceCard({ highlightStock }) {
                 <div className="title">{highlightStock.name}</div>
                 <KeyboardArrowDownRoundedIcon className="arrow-expand" />
             </header>
+            <Chart symbol={highlightStock.symbol} />
             <div className="price"> ₹{highlightStock.price} </div>
             <Ticker
                 change={highlightStock.change}

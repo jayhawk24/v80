@@ -30,6 +30,15 @@ body {
         border-radius: 20px;
     }
 }
+@media screen and (max-height: 600px) {
+    .main {
+        justify-content: center;
+        align-items: center;
+    }
+    .mobile-container {
+        height: 95vh;
+    }
+}
 
 .content {
     margin: 0 20px;
@@ -65,4 +74,11 @@ body {
     width: 100%;
     justify-content: center;
     align-items: center;
+}
+.chart {
+    position: absolute;
+    width: 60%;
+    right: 0;
+    top: 50%;
+    transform: translate(0%, -50%);
 }

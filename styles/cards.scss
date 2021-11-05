@@ -35,6 +35,7 @@
 
 .main-price-card {
     border-radius: 20px;
+    position: relative;
     header {
         margin: 0px 20px;
         display: flex;
@@ -86,6 +87,11 @@
 @media screen and (max-height: 700px) {
     .price-cards-container {
         height: 30vh;
+    }
+}
+@media screen and (max-height: 700px) {
+    .price-cards-container {
+        height: 23vh;
     }
 }
 
