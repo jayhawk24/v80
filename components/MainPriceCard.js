@@ -3,6 +3,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import Ticker from "./Ticker";
 import { format } from "date-fns";
 import Chart from "./Chart";
+import { Button } from "@mui/material";
 
 function MainPriceCard({ highlightStock }) {
     if (!highlightStock) return "";
@@ -12,7 +13,9 @@ function MainPriceCard({ highlightStock }) {
         <div className="main-price-card gradient">
             <header>
                 <div className="title">{highlightStock.name}</div>
-                <KeyboardArrowDownRoundedIcon className="arrow-expand" />
+                <Button color="inherit">
+                    <KeyboardArrowDownRoundedIcon className="arrow-expand" />
+                </Button>
             </header>
             <Chart symbol={highlightStock.symbol} />
             <div className="price"> ₹{highlightStock.price} </div>

@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
@@ -5,7 +6,9 @@ import { Line } from "react-chartjs-2";
 
 const Chart = ({ symbol }) => {
     const [data, setData] = useState({});
-    const labels = data.timestamp.map((date) =>
+    const [loading, setLoading] = useState(true);
+
+    const labels = data.timestamp?.map((date) =>
         format(new Date(new Date() - new Date(date)), "eee")
     );
     const dataObj = {
@@ -25,13 +28,15 @@ const Chart = ({ symbol }) => {
 
     useEffect(() => {
         const getChart = async () => {
+            setLoading(true);
             const response = await axios.get(
                 `/api/get-chart?symbol=${symbol}&interval=60m&range=5d`
             );
             setData(response.data.chart.result[0]);
+            setLoading(false);
         };
         getChart();
-    }, []);
+    }, [symbol]);
 
     const options = {
         plugins: {
@@ -53,7 +58,13 @@ const Chart = ({ symbol }) => {
 
     return (
         <div className="chart">
-            <Line data={dataObj} options={options} />
+            {loading ? (
+                <div className="loader">
+                    <CircularProgress color="inherit" />
+                </div>
+            ) : (
+                <Line data={dataObj} options={options} />
+            )}
         </div>
     );
 };

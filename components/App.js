@@ -5,17 +5,20 @@ import MainPriceCard from "./MainPriceCard";
 import PriceCardsContainer from "./PriceCardsContainer";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
+import { Button } from "@mui/material";
 
 function App() {
     const [stocks, setStocks] = useState([]);
-
+    const [highlightStock, setHighlightStock] = useState({});
     useEffect(() => {
         axios.get("api/v80").then((res) => {
             setStocks(res.data);
         });
     }, []);
 
-    const highlightStock = stocks.sort((a, b) => a.change - b.change)[0];
+    useEffect(() => {
+        setHighlightStock([...stocks].sort((a, b) => a.change - b.change)[0]);
+    }, [stocks]);
 
     return (
         <div className="content">
@@ -32,12 +35,15 @@ function App() {
             </div>
             {stocks.length === 0 ? (
                 <div className="loader">
-                    <CircularProgress />
+                    <CircularProgress color="inherit" />
                 </div>
             ) : (
                 <>
                     <MainPriceCard highlightStock={highlightStock} />
-                    <PriceCardsContainer stocks={stocks} />
+                    <PriceCardsContainer
+                        stocks={stocks}
+                        setHighlightStock={setHighlightStock}
+                    />
                 </>
             )}
         </div>

@@ -112,14 +112,15 @@
 }
 
 .price-card {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     background-color: $lightbackground;
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 10px;
     .details {
         display: flex;
+        flex-grow: 10;
         img {
             max-height: 40px;
             margin-right: 10px;
@@ -135,6 +136,7 @@
     }
     .price {
         display: flex;
+        flex-grow: 2;
         flex-direction: column;
         margin-right: 10px;
         font-family: $font-head;
@@ -145,5 +147,8 @@
     .symbol {
         font-size: 0.8em;
         color: $lightgray;
+    }
+    button {
+        flex-grow: 1;
     }
 }
