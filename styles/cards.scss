@@ -74,24 +74,24 @@
     overflow-y: auto;
 }
 
-@media screen and (max-height: 900px) {
+@media screen and (max-height: 900px) and (min-width: 500px) {
     .price-cards-container {
         height: 40vh;
     }
 }
-@media screen and (max-height: 800px) {
+@media screen and (max-height: 800px) and (min-width: 500px) {
     .price-cards-container {
         height: 35vh;
     }
 }
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 700px) and (min-width: 500px) {
     .price-cards-container {
         height: 30vh;
     }
 }
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 600px) and (min-width: 500px) {
     .price-cards-container {
-        height: 23vh;
+        height: 21vh;
     }
 }
 
