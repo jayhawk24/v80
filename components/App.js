@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import MainPriceCard from "./MainPriceCard";
-import PriceCardsContainer from "./PriceCardsContainer";
-import CircularProgress from "@mui/material/CircularProgress";
-import axios from "axios";
-import { Button } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MainPriceCard from './MainPriceCard';
+import PriceCardsContainer from './PriceCardsContainer';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useSelector } from 'react-redux';
 
 function App() {
-    const [stocks, setStocks] = useState([]);
     const [highlightStock, setHighlightStock] = useState({});
-    useEffect(() => {
-        axios.get("api/v80").then((res) => {
-            setStocks(res.data);
-        });
-    }, []);
+    const stocks = useSelector((state) => state.stocks.stocks);
 
     useEffect(() => {
         setHighlightStock([...stocks].sort((a, b) => a.change - b.change)[0]);
