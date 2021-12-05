@@ -7,15 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchQuote } from "./redux/actions/stockActions";
 
 const Chart = () => {
-    const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
 
     const { selectedStock } = useSelector((state) => state.selectedStock);
     const { stockQuote } = useSelector((state) => state.stockQuote);
 
+    const data = stockQuote?.chart?.result[0];
+
     const dispatch = useDispatch();
 
-    const labels = data.timestamp?.map((date) =>
+    const labels = data?.timestamp?.map((date) =>
         format(new Date(new Date() - new Date(date)), "eee")
     );
     const dataObj = {
@@ -43,7 +44,6 @@ const Chart = () => {
     useEffect(() => {
         if (stockQuote?.chart?.result) {
             setLoading(false);
-            setData(stockQuote.chart.result[0]);
         }
     }, [stockQuote]);
 
