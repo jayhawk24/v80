@@ -3,10 +3,17 @@ import axios from "axios";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchQuote } from "./redux/actions/stockActions";
 
-const Chart = ({ symbol }) => {
+const Chart = () => {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
+
+    const { selectedStock } = useSelector((state) => state.selectedStock);
+    const { stockQuote } = useSelector((state) => state.stockQuote);
+
+    const dispatch = useDispatch();
 
     const labels = data.timestamp?.map((date) =>
         format(new Date(new Date() - new Date(date)), "eee")
@@ -27,16 +34,18 @@ const Chart = ({ symbol }) => {
     };
 
     useEffect(() => {
-        const getChart = async () => {
+        if (selectedStock) {
             setLoading(true);
-            const response = await axios.get(
-                `/api/get-chart?symbol=${symbol}&interval=60m&range=5d`
-            );
-            setData(response.data.chart.result[0]);
+            dispatch(fetchQuote(selectedStock.symbol));
+        }
+    }, [selectedStock]);
+
+    useEffect(() => {
+        if (stockQuote?.chart?.result) {
             setLoading(false);
-        };
-        getChart();
-    }, [symbol]);
+            setData(stockQuote.chart.result[0]);
+        }
+    }, [stockQuote]);
 
     const options = {
         plugins: {

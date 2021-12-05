@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import PriceCard from './PriceCard';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import PriceCard from "./PriceCard";
 
-function PriceCardsContainer({ setHighlightStock }) {
+function PriceCardsContainer() {
     const stocks = useSelector((state) => state.stocks.stocks);
     if (stocks)
         return (
@@ -10,16 +10,12 @@ function PriceCardsContainer({ setHighlightStock }) {
                 <p>Your watchlist</p>
                 <div className="price-cards-container">
                     {stocks.map((stock, i) => (
-                        <PriceCard
-                            key={i}
-                            stock={stock}
-                            setHighlightStock={setHighlightStock}
-                        />
+                        <PriceCard key={i} stock={stock} />
                     ))}
                 </div>
             </div>
         );
-    return '';
+    return "";
 }
 
 export default PriceCardsContainer;

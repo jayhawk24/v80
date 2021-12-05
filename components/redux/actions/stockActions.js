@@ -6,11 +6,11 @@ export const fetchStocks = () => async (dispatch) => {
     dispatch({ type: ActionTypes.SET_STOCKS, payload: response.data });
 };
 
-export const fetchStock = (symbol) => async (dispatch) => {
+export const fetchQuote = (symbol) => async (dispatch) => {
     const response = await axios.get(
         `/api/get-chart?symbol=${symbol}&interval=60m&range=5d`
     );
-    dispatch({ type: ActionTypes.SET_SELECTED_STOCK, payload: response.data });
+    dispatch({ type: ActionTypes.SET_STOCK_QUOTE, payload: response.data });
 };
 
 export const setStocks = (stocks) => {

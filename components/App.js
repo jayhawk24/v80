@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import MainPriceCard from './MainPriceCard';
-import PriceCardsContainer from './PriceCardsContainer';
-import CircularProgress from '@mui/material/CircularProgress';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MainPriceCard from "./MainPriceCard";
+import PriceCardsContainer from "./PriceCardsContainer";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedStock } from "./redux/actions/stockActions";
 
 function App() {
-    const [highlightStock, setHighlightStock] = useState({});
     const stocks = useSelector((state) => state.stocks.stocks);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        setHighlightStock([...stocks].sort((a, b) => a.change - b.change)[0]);
+        // setHighlightStock();
+        dispatch(
+            setSelectedStock([...stocks].sort((a, b) => a.change - b.change)[0])
+        );
     }, [stocks]);
 
     return (
@@ -33,11 +38,8 @@ function App() {
                 </div>
             ) : (
                 <>
-                    <MainPriceCard highlightStock={highlightStock} />
-                    <PriceCardsContainer
-                        stocks={stocks}
-                        setHighlightStock={setHighlightStock}
-                    />
+                    <MainPriceCard />
+                    <PriceCardsContainer stocks={stocks} />
                 </>
             )}
         </div>

@@ -1,9 +1,14 @@
 import { combineReducers } from "redux";
-import { stockReducer, selectedStockReducer } from "./stockReducers";
+import {
+    stockReducer,
+    selectedStockReducer,
+    stockQuoteReducer
+} from "./stockReducers";
 
 const reducers = combineReducers({
     stocks: stockReducer,
-    selectedStock: selectedStockReducer
+    selectedStock: selectedStockReducer,
+    stockQuote: stockQuoteReducer
 });
 
 export default reducers;

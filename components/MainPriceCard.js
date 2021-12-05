@@ -4,25 +4,27 @@ import Ticker from "./Ticker";
 import { format } from "date-fns";
 import Chart from "./Chart";
 import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
 
-function MainPriceCard({ highlightStock }) {
-    if (!highlightStock) return "";
+function MainPriceCard() {
+    const selectedStock = useSelector(
+        (state) => state.selectedStock.selectedStock
+    );
+    if (!selectedStock) return null;
+
     const today = format(new Date(), "MMM dd, yyyy");
 
     return (
         <div className="main-price-card gradient">
             <header>
-                <div className="title">{highlightStock.name}</div>
+                <div className="title">{selectedStock.name}</div>
                 <Button color="inherit">
                     <KeyboardArrowDownRoundedIcon className="arrow-expand" />
                 </Button>
             </header>
-            <Chart symbol={highlightStock.symbol} />
-            <div className="price"> ₹{highlightStock.price} </div>
-            <Ticker
-                change={highlightStock.change}
-                price={highlightStock.price}
-            />
+            <Chart symbol={selectedStock.symbol} />
+            <div className="price"> ₹{selectedStock.price} </div>
+            <Ticker change={selectedStock.change} price={selectedStock.price} />
             <p>Today ( {today} )</p>
         </div>
     );

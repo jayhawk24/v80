@@ -1,4 +1,4 @@
-import { ActionTypes } from '../actions/actionTypes';
+import { ActionTypes } from "../actions/actionTypes";
 
 const initState = {
     stocks: []
@@ -19,6 +19,15 @@ export const selectedStockReducer = (state = {}, { type, payload }) => {
             return { selectedStock: payload };
         case ActionTypes.REMOVE_SELECTED_STOCK:
             return {};
+        default:
+            return state;
+    }
+};
+
+export const stockQuoteReducer = (state = {}, { type, payload }) => {
+    switch (type) {
+        case ActionTypes.SET_STOCK_QUOTE:
+            return { stockQuote: payload };
         default:
             return state;
     }
