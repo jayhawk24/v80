@@ -1,10 +1,13 @@
 import Head from "next/head";
-import MobileContainer from "../components/MobileContainer";
+import MobileContainer from "../components/Mobile/MobileContainer";
 import { Provider } from "react-redux";
 import store from "../components/redux/store";
-import AppContainer from "../components/containers/AppContainer";
+import MobileAppContainer from "../components/containers/MobileAppContainer";
+import useMobileDetect from "../components/hooks/useMobileDetect";
 
 export default function Home(props) {
+    const currentDevice = useMobileDetect();
+    console.log(currentDevice.isMobile());
     return (
         <div>
             <Provider store={store}>
@@ -29,11 +32,17 @@ export default function Home(props) {
                     />
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-                <div className="main">
-                    <MobileContainer>
-                        <AppContainer />
-                    </MobileContainer>
-                </div>
+                {currentDevice.isMobile() ? (
+                    <div className="main">
+                        <MobileContainer>
+                            <MobileAppContainer />
+                        </MobileContainer>
+                    </div>
+                ) : (
+                    <div className="desktop-container">
+                        <h1>Desktop</h1>
+                    </div>
+                )}
             </Provider>
         </div>
     );

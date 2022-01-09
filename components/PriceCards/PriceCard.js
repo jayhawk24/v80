@@ -1,9 +1,9 @@
 import React from "react";
-import Ticker from "./Ticker";
+import Ticker from "../Ticker";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { setSelectedStock } from "./redux/actions/stockActions";
+import { setSelectedStock } from "../redux/actions/stockActions";
 
 function PriceCard({ stock }) {
     const imageSrc = "https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png";

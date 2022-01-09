@@ -1,8 +1,8 @@
 import React from "react";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import Ticker from "./Ticker";
+import Ticker from "../Ticker";
 import { format } from "date-fns";
-import Chart from "./Chart";
+import Chart from "../Chart";
 import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 

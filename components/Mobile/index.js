@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import MainPriceCard from "./MainPriceCard";
-import PriceCardsContainer from "./PriceCardsContainer";
+import MainPriceCard from "../PriceCards/MainPriceCard";
+import PriceCardsContainer from "../PriceCards/PriceCardsContainer";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedStock } from "./redux/actions/stockActions";
+import { setSelectedStock } from "../redux/actions/stockActions";
 
 function App() {
     const stocks = useSelector((state) => state.stocks.stocks);
@@ -13,7 +13,6 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // setHighlightStock();
         dispatch(
             setSelectedStock([...stocks].sort((a, b) => a.change - b.change)[0])
         );

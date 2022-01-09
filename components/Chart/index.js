@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchQuote } from "./redux/actions/stockActions";
+import { fetchQuote } from "../redux/actions/stockActions";
 
 const Chart = () => {
     const [loading, setLoading] = useState(true);
