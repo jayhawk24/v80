@@ -17,7 +17,7 @@ function PriceCard({ stock }) {
             <div className="details">
                 <img src={imageSrc} />
                 <div>
-                    {name}
+                    <div className="title">{name}</div>
                     <div className="symbol">{symbol}</div>
                 </div>
             </div>

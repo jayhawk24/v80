@@ -7,7 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedStock } from "../redux/actions/stockActions";
 
-function App() {
+function Mobile() {
     const stocks = useSelector((state) => state.stocks.stocks);
 
     const dispatch = useDispatch();
@@ -38,11 +38,11 @@ function App() {
             ) : (
                 <>
                     <MainPriceCard />
-                    <PriceCardsContainer stocks={stocks} />
+                    <PriceCardsContainer />
                 </>
             )}
         </div>
     );
 }
 
-export default App;
+export default Mobile;

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import App from "../Mobile";
+import Mobile from "../Mobile";
 import { fetchStocks } from "../redux/actions/stockActions";
 
 function MobileAppContainer() {
@@ -11,7 +11,7 @@ function MobileAppContainer() {
         dispatch(fetchStocks());
     }, []);
 
-    return <App />;
+    return <Mobile />;
 }
 
 export default MobileAppContainer;

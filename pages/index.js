@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "../components/redux/store";
 import MobileAppContainer from "../components/containers/MobileAppContainer";
 import useMobileDetect from "../components/hooks/useMobileDetect";
+import Desktop from "../components/Desktop";
 
 export default function Home(props) {
     const currentDevice = useMobileDetect();
@@ -39,9 +40,7 @@ export default function Home(props) {
                         </MobileContainer>
                     </div>
                 ) : (
-                    <div className="desktop-container">
-                        <h1>Desktop</h1>
-                    </div>
+                    <Desktop />
                 )}
             </Provider>
         </div>
