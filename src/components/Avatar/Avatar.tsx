@@ -42,13 +42,11 @@ const avatarColors = [
 ];
 
 const Avatar: FC<AvatarProps> = ({
-  containerClassName = "ring-1 ring-white dark:ring-neutral-900",
+  containerClassName = "",
   sizeClass = "h-6 w-6 text-sm",
   radius = "rounded-full",
   imgUrl,
   userName,
-  hasChecked,
-  hasCheckedClass = "w-4 h-4 -top-0.5 -right-0.5",
 }) => {
   const url = imgUrl || "";
   const name = userName || "John Doe";
@@ -61,7 +59,7 @@ const Avatar: FC<AvatarProps> = ({
 
   return (
     <div
-      className={`wil-avatar relative inline-flex flex-shrink-0 items-center justify-center font-semibold uppercase text-neutral-100 shadow-inner ${radius} ${sizeClass} ${containerClassName}`}
+      className={`relative inline-flex items-center justify-center font-semibold uppercase text-neutral-100 ${radius} ${sizeClass} ${containerClassName}`}
       style={{ backgroundColor: url ? undefined : _setBgColor(name) }}
     >
       {url && (
@@ -71,15 +69,7 @@ const Avatar: FC<AvatarProps> = ({
           alt={name}
         />
       )}
-      <span className="wil-avatar__name">{name[0]}</span>
-
-      {hasChecked && (
-        <span
-          className={` absolute flex items-center justify-center rounded-full bg-teal-500 text-xs text-white  ${hasCheckedClass}`}
-        >
-          <i className="las la-check"></i>
-        </span>
-      )}
+      <span>{name[0]}</span>
     </div>
   );
 };
