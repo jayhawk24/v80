@@ -1,4 +1,4 @@
-# https://v80.jayhawk.tech
+# https://v80.vercel.app
 
 ## v80
 
