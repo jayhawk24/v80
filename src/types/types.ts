@@ -20,3 +20,12 @@ export interface StockMeta{
   "4. Output Size":string 
   "5. Time Zone": string 
 }
+
+export interface SeriesData{ x: Date; y: number[]; }
+
+export interface Series{ data: SeriesData[]; }
+
+export interface TimeSeriesDailyAdjusted{
+  "Meta Data": StockMeta
+  "Time Series (Daily)": TimeSeries
+}
