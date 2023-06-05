@@ -8,7 +8,7 @@ const Nav = () => {
     <div>
       <div className="flex justify-between">
         <Search />
-        <div className="flex w-1/2 justify-around divide-x-2 divide-black">
+        <div className="flex justify-around ">
           <div className="flex">
             <Image
               alt="message icon"

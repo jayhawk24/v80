@@ -1,16 +1,19 @@
 import React from "react";
 import { type NextPage } from "next";
-import Sidebar from "~/components/Sidebar/Sidebar";
 import Nav from "~/components/Nav/Nav";
+import CarouselContainer from "~/components/CarouselContainer/CarouselContainer";
+import LiveChart from "~/components/LiveChart/LiveChart";
 
 const Dashboard: NextPage = () => {
+  const API_KEY = "3WONBXU6F6QKQGKD";
+
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-2">
-        <Sidebar />
-      </div>
-      <div className="col-span-10">
+    <div className="mx-5 my-2 grid grid-cols-12">
+      <div className="col-span-12">
         <Nav />
+        <h1 className="text-xl font-semibold">My Portfolio</h1>
+        <CarouselContainer />
+        <LiveChart name="Apple" />
       </div>
     </div>
   );

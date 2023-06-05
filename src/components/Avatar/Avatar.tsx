@@ -58,18 +58,21 @@ const Avatar: FC<AvatarProps> = ({
   };
 
   return (
-    <div
-      className={`relative inline-flex items-center justify-center font-semibold uppercase text-neutral-100 ${radius} ${sizeClass} ${containerClassName}`}
-      style={{ backgroundColor: url ? undefined : _setBgColor(name) }}
-    >
-      {url && (
-        <Image
-          className={`absolute inset-0 h-full w-full object-cover ${radius}`}
-          src={url}
-          alt={name}
-        />
-      )}
-      <span>{name[0]}</span>
+    <div className="flex">
+      <div
+        className={`relative inline-flex items-center justify-center font-semibold uppercase text-neutral-100 ${radius} ${sizeClass} ${containerClassName}`}
+        style={{ backgroundColor: url ? undefined : _setBgColor(name) }}
+      >
+        {url && (
+          <Image
+            className={`absolute inset-0 h-full w-full object-cover ${radius}`}
+            src={url}
+            alt={name}
+          />
+        )}
+        <span>{name[0]}</span>
+      </div>
+      <div className="ml-2">{name}</div>
     </div>
   );
 };
