@@ -13,7 +13,7 @@ const Dashboard: NextPage = () => {
         <Nav />
         <h1 className="text-xl font-semibold">My Portfolio</h1>
         <CarouselContainer />
-        <LiveChart name="Apple" />
+        <LiveChart name="Apple" symbol="AAPL" />
       </div>
     </div>
   );

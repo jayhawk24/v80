@@ -1,25 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import React, { useEffect, useState } from "react";
-import {
-  type TimeSeriesDailyAdjusted,
-  type Series,
-  type TimeSeries,
-} from "~/types/types";
+import React, { useCallback } from "react";
+import { type TimeSeries } from "~/types/types";
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { formatData } from "~/utils/utils";
+import { getTimeSeriesDaily } from "~/services/request-handler";
+
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
 type Props = {
   name: string;
-  symbol?: string;
+  symbol: string;
   price?: string;
   timeSeries?: TimeSeries;
 };
 
-const options = {
+const options: ApexCharts.ApexOptions = {
   chart: {
     type: "candlestick",
   },
@@ -37,25 +35,27 @@ const options = {
   },
 };
 
-const BASE_URL =
-  "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=RELIANCE.BSE&outputsize=full&apikey=3WONBXU6F6QKQGKD";
-
 const LiveChart = (props: Props) => {
-  const [series, setSeries] = useState<Series>({});
-
-  const getStock = async () => {
-    return await fetch(BASE_URL)
-      .then(async (response) => await response.json())
-      .then((data) => setSeries(formatData(data as TimeSeriesDailyAdjusted)));
-  };
-  useQuery("getStock", getStock, { staleTime: Infinity, cacheTime: Infinity });
+  const timeSeries = useQuery(
+    "getStock",
+    () => getTimeSeriesDaily(props.symbol),
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    }
+  );
+  const seriesData = useCallback(
+    () =>
+      timeSeries.data?.data ? formatData(timeSeries.data?.data) : { data: [] },
+    [timeSeries]
+  );
 
   return (
     <div id="chart">
       {typeof window !== undefined && (
         <ReactApexChart
           options={options}
-          series={[series]}
+          series={[seriesData()]}
           type="candlestick"
           height={350}
         />
