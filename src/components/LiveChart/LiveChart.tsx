@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import React, { useCallback } from "react";
-import { type TimeSeries } from "~/types/types";
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { formatData } from "~/utils/utils";
@@ -14,7 +13,6 @@ type Props = {
   name: string;
   symbol: string;
   price?: string;
-  timeSeries?: TimeSeries;
 };
 
 const options: ApexCharts.ApexOptions = {
@@ -36,6 +34,8 @@ const options: ApexCharts.ApexOptions = {
 };
 
 const LiveChart = (props: Props) => {
+  options.title = { text: props.name };
+
   const timeSeries = useQuery(
     "getStock",
     () => getTimeSeriesDaily(props.symbol),
@@ -51,13 +51,12 @@ const LiveChart = (props: Props) => {
   );
 
   return (
-    <div id="chart">
+    <div id="chart" className="h-full w-1/2 rounded-3xl bg-white">
       {typeof window !== undefined && (
         <ReactApexChart
           options={options}
           series={[seriesData()]}
           type="candlestick"
-          height={350}
         />
       )}
     </div>
