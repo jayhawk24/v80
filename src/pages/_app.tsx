@@ -11,7 +11,14 @@ const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        cacheTime: Infinity,
+        staleTime: Infinity,
+      },
+    },
+  });
 
   return (
     <SessionProvider session={session}>

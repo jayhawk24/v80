@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { formatData } from "~/utils/utils";
-import { getTimeSeriesDaily } from "~/services/request-handler";
+import { getTimeSeriesDaily } from "~/services/query";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
