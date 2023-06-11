@@ -29,11 +29,11 @@ const CarouselContainer = () => {
         </div>
       }
     >
-      <StockCard name={"Apple"} price={42} />
-      <StockCard name={"Microsoft"} price={42} />
-      <StockCard name={"Tesla"} price={42} />
-      <StockCard name={"Meta"} price={42} />
-      <StockCard name={"Alphabet"} price={42} />
+      <StockCard name={"Microsoft"} symbol="MSFT" />
+      <StockCard name={"Tesla"} symbol="TSLA" />
+      <StockCard name={"Meta"} symbol="META" />
+      {/* <StockCard name={"HDFC"} symbol="HDFCBANK.BSE" /> */}
+      {/* <StockCard name={"Alphabet"} symbol="GOOGL" /> */}
     </Carousel>
   );
 };
