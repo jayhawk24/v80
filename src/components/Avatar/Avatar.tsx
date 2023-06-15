@@ -1,6 +1,7 @@
 import React from "react";
 import type { FC } from "react";
 import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
 
 export interface AvatarProps {
   containerClassName?: string;
@@ -45,11 +46,13 @@ const Avatar: FC<AvatarProps> = ({
   containerClassName = "",
   sizeClass = "h-6 w-6 text-sm",
   radius = "rounded-full",
-  imgUrl,
-  userName,
 }) => {
-  const url = imgUrl || "";
-  const name = userName || "John Doe";
+
+  const { user } = useUser()
+
+  const url = user?.profileImageUrl || "";
+  const name = user?.fullName || user?.username || "";
+
   const _setBgColor = (name: string) => {
     const backgroundIndex = Math.floor(
       name.charCodeAt(0) % avatarColors.length
@@ -68,6 +71,8 @@ const Avatar: FC<AvatarProps> = ({
             className={`absolute inset-0 h-full w-full object-cover ${radius}`}
             src={url}
             alt={name}
+            width={100}
+            height={100}
           />
         )}
         <span>{name[0]}</span>

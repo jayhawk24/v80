@@ -1,19 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import dynamic from "next/dynamic";
 import { useQuery } from "react-query";
 import { formatData } from "~/utils/utils";
 import { getTimeSeriesDaily } from "~/services/query";
+import { AppContext } from "~/context/AppContext";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-type Props = {
-  name: string;
-  symbol: string;
-  price?: string;
-};
 
 const options: ApexCharts.ApexOptions = {
   chart: {
@@ -33,12 +29,15 @@ const options: ApexCharts.ApexOptions = {
   },
 };
 
-const LiveChart = (props: Props) => {
-  options.title = { text: props.name };
+const LiveChart = () => {
+
+  const appContext = useContext(AppContext)
+  options.title = { text: appContext?.liveChart.name };
 
   const timeSeries = useQuery(
-    "getStock",
-    () => getTimeSeriesDaily(props.symbol),
+    ["getStock", appContext?.liveChart.symbol],
+
+    () => getTimeSeriesDaily(appContext?.liveChart.symbol),
     {
       staleTime: Infinity,
       cacheTime: Infinity,
