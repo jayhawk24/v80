@@ -7,11 +7,18 @@ import {
 } from "~/server/api/trpc";
 
 export const stocksRouter = createTRPCRouter({
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.stock.findMany();
+  getAll: publicProcedure.query(async ({ ctx }) => {
+    const stocks = await ctx.prisma.stock.findMany();
+    return stocks
   }),
 
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
+  getById: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
+    const stock = await ctx.prisma.stock.findUnique({
+      where: {
+        id: input,
+      },
+    });
+    return stock
+  })
+
 });

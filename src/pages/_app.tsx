@@ -24,10 +24,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
 
       <QueryClientProvider client={queryClient}>
-        
-    <ClerkProvider {...pageProps}>
-        <Component {...pageProps} />
-    </ClerkProvider>
+
+        <ClerkProvider {...pageProps}>
+          <Component {...pageProps} />
+        </ClerkProvider>
       </QueryClientProvider>
     </SessionProvider>
   );
