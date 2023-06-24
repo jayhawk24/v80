@@ -11,7 +11,6 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-
 const options: ApexCharts.ApexOptions = {
   chart: {
     type: "candlestick",
@@ -49,9 +48,8 @@ const LiveChart = () => {
       timeSeries.data?.data ? formatData(timeSeries.data?.data) : { data: [] },
     [timeSeries]
   );
-
-  const { data } = api.stocks.getAll.useQuery()
-  console.log(data)
+  // const { data } = api.stocks.getAll.useQuery()
+  // console.log(data)
 
   return (
     <div id="chart" className="h-full w-1/2 rounded-3xl bg-white">
